@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System</title>
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Link JS -->
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<div class="header" 
+     style="display:flex; align-items:center; justify-content:space-between; 
+            padding:24px 9px; background:#1d2935; color:white; font-size:24px;">
+
+    <!-- LEFT: Time -->
+    <div style="font-size:22px; font-weight:bold;">
+        Time: 9:30am - 6pm
+    </div>
+
+    <!-- CENTER: Title -->
+    <div style="position:absolute; left:50%; transform:translateX(-50%); 
+                font-size:32px; font-weight:bold;">
+        Library Management System
+    </div>
+
+    <!-- RIGHT: About Icon -->
+    <a href="about.php">
+    <img src="about.jpg.jpeg" 
+         alt="About"
+         style="width:30px; height:30px; cursor:pointer;">
+    </a>
+</div>
+
+
+<!-- HOME PAGE -->
+<div class="home-container" id="home">
+    <div class="login-boxes">
+        <div class="login-box">
+            <div class="logo">👩‍🎓</div>
+            <button onclick="showPage('login')">User Login</button>
+        </div>
+
+        <div class="login-box">
+            <div class="logo">👨‍💼</div>
+            <button onclick="showPage('adminLogin')">Admin Login</button>
+        </div>
+    </div>
+</div>
+
+<!-- ADMIN LOGIN -->
+<div class="admin-bg hide" id="adminLogin">
+    <div class="container">
+        <h2>Admin Login</h2>
+        <form action="admin_login.php" method="POST">
+        <label>Username:</label>
+        <input type="text" id="adminUsername" name="username">
+        <label>Password:</label>
+        <input type="password" id="adminPassword" name="password">
+        <!--<button class="full-btn" onclick="adminLogin()">Login</button>-->
+        <button class="full-btn" type="submit">Login</button>
+        </form>
+        <div class="link"><a onclick="showPage('home')">Back</a></div>
+    </div>
+</div>
+
+<!-<!-- USER LOGIN -->
+<div class="login-bg hide" id="login">
+    <div class="container">
+        <h2>User Login</h2>
+
+        <form action="login.php" method="POST">
+
+        <label>Username or Email:</label>
+        <input type="text" id="loginuser" name="username">
+
+        <label>Password:</label>
+        <input type="password" id="loginpass" name="password">
+
+        <div class="right">
+            <a onclick="showPage('forgot')">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="full-btn">Login</button>
+
+        </form>
+
+        <div class="link">
+            New user? <a onclick="showPage('signup')">Register here</a>
+        </div>
+    </div>
+</div>
+
+   
+
+<!-- USER SIGNUP -->
+<div class="signup-bg hide" id="signup">
+    <div class="container">
+        <h2>SignUp</h2>
+        <label>Full Name:</label>
+        <input type="text" id="fullname">
+
+        <label>Email:</label>
+        <input type="text" id="signupEmail">
+
+        <label>Age:</label>
+        <input type="number" id="signupAge" min="10">
+
+        <!-- GENDER ADDED -->
+        <label>Gender:</label>
+        <select id="signupGender">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br><br>
+
+        <label>Username:</label>
+        <input type="text" id="suUsername">
+
+        <label>Password:</label>
+        <input type="password" id="suPassword" name="password">
+
+        <label>Confirm Password:</label>
+        <input type="password" id="suConfirmPassword" name="password">
+
+        <p id="passMsg" style="color:red; display:none;">Passwords do not match!</p>
+
+        <label>Phone No:</label>
+        <input type="text" id="signupPhone" value="+91" oninput="formatIndianPhone(this)">
+
+        <button class="small-btn" onclick="sendSignupOTP()">Send OTP</button>
+
+        <div id="signupOtpDiv" style="display:none;">
+            <label>Enter OTP:</label>
+            <input type="text" id="signupOtp">
+        </div>
+
+        <button class="full-btn" onclick="signup()">SignUp</button>
+
+        <div class="link">
+            Already a member? <a onclick="showPage('login')">Login here</a>
+        </div>
+    </div>
+</div>
+
+<!-- FORGOT PASSWORD -->
+<div class="forget-bg hide" id="forgot">
+    <div class="container">
+        <h2>Forgot Password</h2>
+
+        <label>Phone No:</label>
+        <input type="text" id="fphone" value="+91" oninput="formatIndianPhone(this)">
+
+        <button class="small-btn" onclick="sendForgotOTP()">Send OTP</button>
+
+        <div id="otpDiv" style="display:none;">
+            <label>Enter OTP:</label>
+            <input type="text" id="forgotOtp">
+            <button class="small-btn" onclick="verifyForgotOtp()">Verify OTP</button>
+        </div>
+
+        <div id="resetDiv" style="display:none;">
+            <label>New Password:</label>
+            <input type="password" id="newpass">
+
+            <label>Confirm Password:</label>
+            <input type="password" id="confirmpass">
+
+            <button class="full-btn" onclick="resetPassword()">Reset Password</button>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    For any queries contact: librarysupport@bvrit.ac.in<br>
+    <b>B V Raju Institute of Technology</b>
+</div>
+
+</body>
+</html>
